@@ -97,4 +97,22 @@ public class QuestionController {
         return "redirect:/";
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/rec/{id}")
+    public String questionRec(Principal principal, @PathVariable("id") Integer id) {
+        Question question = this.questionService.getQuestion(id);
+        SiteUser siteUser = this.siteUserService.getUser(principal.getName());
+        this.questionService.rec(question, siteUser);
+        return String.format("redirect:/question/detail/%s", id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/nrec/{id}")
+    public String questionNrec(Principal principal, @PathVariable("id") Integer id) {
+        Question question = this.questionService.getQuestion(id);
+        SiteUser siteUser = this.siteUserService.getUser(principal.getName());
+        this.questionService.nrec(question, siteUser);
+        return String.format("redirect:/question/detail/%s", id);
+    }
+
 }

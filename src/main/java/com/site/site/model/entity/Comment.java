@@ -2,10 +2,10 @@ package com.site.site.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import com.site.site.model.entity.SiteUser;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -28,4 +28,10 @@ public class Comment {
 
     @ManyToOne
     private SiteUser author;
+
+    @ManyToMany
+    Set<SiteUser> rec;
+
+    @ManyToMany
+    Set<SiteUser> nrec;
 }

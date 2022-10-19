@@ -58,4 +58,14 @@ public class QuestionService {
         this.questionRepository.delete(question);
     }
 
+    public void rec(Question question, SiteUser siteUser) {
+        question.getRec().add(siteUser);
+        this.questionRepository.save(question);
+    }
+
+    public void nrec(Question question, SiteUser siteUser) {
+        question.getNrec().add(siteUser);
+        this.questionRepository.save(question);
+    }
+
 }

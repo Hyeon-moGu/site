@@ -2,11 +2,11 @@ package com.site.site.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import javax.persistence.ManyToOne;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -32,4 +32,10 @@ public class Question {
 
     @ManyToOne
     private SiteUser author;
+
+    @ManyToMany
+    Set<SiteUser> rec;
+
+    @ManyToMany
+    Set<SiteUser> nrec;
 }

@@ -18,13 +18,14 @@ public class CommentService {
     private final CommentRepository commentRepository;
 
 
-    public void create(Question question, String content, SiteUser author) {
+    public Comment create(Question question, String content, SiteUser author) {
         Comment comment = new Comment();
         comment.setContent(content);
         comment.setCreateDate(LocalDateTime.now());
         comment.setQuestion(question);
         comment.setAuthor(author);
         this.commentRepository.save(comment);
+        return comment;
     }
 
     public Comment getComment(Integer id) {
@@ -44,5 +45,15 @@ public class CommentService {
 
     public void delete(Comment comment) {
         this.commentRepository.delete(comment);
+    }
+
+    public void rec(Comment comment, SiteUser siteUser) {
+        comment.getRec().add(siteUser);
+        this.commentRepository.save(comment);
+    }
+
+    public void nrec(Comment comment, SiteUser siteUser) {
+        comment.getNrec().add(siteUser);
+        this.commentRepository.save(comment);
     }
 }
