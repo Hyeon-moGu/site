@@ -4,8 +4,20 @@
     <!-- 질문 -->
     <h2 class="border-bottom py-2 fw-bold" th:text="${question.title}"></h2>
     <div class="card my-3">
-        <div class="card-body">
+        <div class="card-body position-relative">
             <div class="card-text" style="white-space: pre-line;" th:text="${question.content}"></div>
+            <div class="rec-btn">
+                <a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
+                   th:data-uri="@{|/question/rec/${question.id}|}">
+                    추천
+                    <span class="badge rounded-pill bg-success" th:text="${#lists.size(question.rec)}"></span>
+                </a>
+                <a href="javascript:void(0);" class="nrecommend btn btn-sm btn-outline-secondary"
+                   th:data-uri="@{|/question/nrec/${question.id}|}">
+                    비추천
+                    <span class="badge rounded-pill bg-danger" th:text="${#lists.size(question.nrec)}"></span>
+                </a>
+            </div>
             <div class="my-3 text-end">
                 <a th:href="@{|/question/modify/${question.id}|}" class="btn btn-sm btn-outline-secondary"
                    sec:authorize="isAuthenticated()"
@@ -24,7 +36,6 @@
                     <div th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                 </div>
             </div>
-
         </div>
     </div>
     <br>
@@ -33,17 +44,30 @@
         th:text="|${#lists.size(question.commentList)}개의 댓글이 있습니다.|"></h5>
     <!-- 답변 반복 시작 -->
     <div class="card my-2" th:each="comment : ${question.commentList}">
+        <a th:id="|comment_${comment.id}|"></a>
         <div class="card-body">
             <div class="card-text" style="white-space: pre-line;" th:text="${comment.content}"></div>
+            <div class="rec-btn">
+                <a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
+                   th:data-uri="@{|/comment/rec/${comment.id}|}">
+                    추천
+                    <span class="badge rounded-pill bg-success" th:text="${#lists.size(comment.rec)}"></span>
+                </a>
+                <a href="javascript:void(0);" class="nrecommend btn btn-sm btn-outline-secondary"
+                   th:data-uri="@{|/comment/nrec/${comment.id}|}">
+                    비추천
+                    <span class="badge rounded-pill bg-danger" th:text="${#lists.size(comment.nrec)}"></span>
+                </a>
+            </div>
             <div class="my-3 text-end">
                 <a th:href="@{|/comment/modify/${comment.id}|}" class="btn btn-sm btn-outline-secondary"
                    sec:authorize="isAuthenticated()"
                    th:if="${comment.author != null and #authentication.getPrincipal().getUsername() == comment.author.username}"
                    th:text="수정"></a>
-            <a href="javascript:void(0);" th:data-uri="@{|/comment/delete/${comment.id}|}"
-               class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
-               th:if="${comment.author != null and #authentication.getPrincipal().getUsername() == comment.author.username}"
-               th:text="삭제"></a>
+                <a href="javascript:void(0);" th:data-uri="@{|/comment/delete/${comment.id}|}"
+                   class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
+                   th:if="${comment.author != null and #authentication.getPrincipal().getUsername() == comment.author.username}"
+                   th:text="삭제"></a>
             </div>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2 text-start">
@@ -66,11 +90,28 @@
         </div>
     </form>
 </div>
+
 <script layout:fragment="script" type='text/javascript'>
     const delete_elements = document.getElementsByClassName("delete");
     Array.from(delete_elements).forEach(function(element) {
         element.addEventListener('click', function() {
             if(confirm("삭제하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+    const recommend_elements = document.getElementsByClassName("recommend");
+    Array.from(recommend_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            if(confirm("추천하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+    const nrecommend_elements = document.getElementsByClassName("nrecommend");
+    Array.from(nrecommend_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            if(confirm("비추천하시겠습니까?")) {
                 location.href = this.dataset.uri;
             };
         });

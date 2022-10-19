@@ -4,6 +4,11 @@ textarea {
     border: none;
 }
 
+.rec-btn{
+    position: absolute;
+    bottom: 17px;
+}
+
 nav {
     padding-top: 75px;
     position: fixed;
