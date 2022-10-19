@@ -28,9 +28,11 @@ public class QuestionController {
     private final SiteUserService siteUserService;
 
     @RequestMapping("/list")
-    public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
-        Page<Question> paging = this.questionService.getList(page);
+    public String list(Model model, @RequestParam(value="page", defaultValue="0") int page,
+                       @RequestParam(value = "searchWord", defaultValue = "") String searchWord) {
+        Page<Question> paging = this.questionService.getList(page, searchWord);
         model.addAttribute("paging", paging);
+        model.addAttribute("searchWord", searchWord);
         return "question_list";
     }
 
