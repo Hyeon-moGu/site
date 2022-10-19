@@ -9,9 +9,19 @@
 </head>
 
 <body>
-<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+<!-- 네비게이션바 -->
+<nav th:replace="navbar :: navbarFragment"></nav>
+
+<!-- 템플릿 안에 삽입될 내용 시작 -->
 <th:block layout:fragment="content"></th:block>
-<!-- 기본 템플릿 안에 삽입될 내용 End -->
+<!-- 템플릿 안에 삽입될 내용 끝 -->
+
+<!-- Bootstrap JS -->
+<script th:src="@{/bootstrap.min.js}"></script>
+
+<!-- 자바스크립트 시작 -->
+<th:block layout:fragment="script"></th:block>
+<!-- 자바스크립트 끝 -->
 </body>
 
 </html>

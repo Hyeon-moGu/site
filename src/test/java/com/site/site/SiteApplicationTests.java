@@ -2,6 +2,7 @@ package com.site.site;
 
 import com.site.site.model.entity.Question;
 import com.site.site.repository.QuestionRepository;
+import com.site.site.service.QuestionService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +18,17 @@ class SiteApplicationTests {
 	@Autowired
 	private QuestionRepository questionRepository;
 
-	@Test
-	@DisplayName("JPA 테스트")
-	void givenJPA_whenSaveRepository_thenSaveQuery() {
-		// Given
-		Question TestQ1 = new Question();
-		TestQ1.setTitle("Test Title One");
-		TestQ1.setContent("Test Content One");
-		TestQ1.setCreateDate(LocalDateTime.now());
-		this.questionRepository.save(TestQ1);
+	@Autowired
+	private QuestionService questionService;
 
-		Question TestQ2 = new Question();
-		TestQ2.setTitle("Test Title Two");
-		TestQ2.setContent("Test Content Two");
-		TestQ2.setCreateDate(LocalDateTime.now());
-		this.questionRepository.save(TestQ2);
-		// When & Then
+	@Test
+	@DisplayName("JPA 테스트 데이터 생성")
+	void Test_JPA() {
+		for (int i = 1; i <= 100; i++) {
+			String title = String.format("[%03d]번째 테스트 제목", i);
+			String content = "내용없음";
+			this.questionService.create(title, content, null);
+		}
 	}
 
 	@Test

@@ -2,6 +2,7 @@ package com.site.site.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import javax.persistence.ManyToOne;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,6 +25,11 @@ public class Question {
 
     private LocalDateTime createDate;
 
+    private LocalDateTime modifyDate;
+
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Comment> commentList;
+
+    @ManyToOne
+    private SiteUser author;
 }

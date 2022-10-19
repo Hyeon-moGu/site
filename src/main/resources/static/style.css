@@ -3,3 +3,62 @@ textarea {
     resize: none;
     border: none;
 }
+
+nav {
+    padding-top: 75px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.navbar-default {
+    background-color: #282828;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.nav-item a{
+    font-size: 15px;
+    color : white;
+    text-decoration: none;
+    position: relative;
+    padding: 4px 8px;
+}
+
+.nav-item a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: #f1c40f;
+    transition: all .5s ease-out;
+}
+
+.nav-item a:hover::after {
+    width: 80%;
+}
+
+.nav-link :visited{
+    color: white;
+}
+
+.nav-link:hover {
+    color : white;
+}
+
+.navbar-brand{
+    color : white;
+    transition: all 0.5s;
+}
+
+.navbar-brand:hover{
+    color : white;
+}

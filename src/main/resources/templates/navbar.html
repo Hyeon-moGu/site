@@ -1,0 +1,26 @@
+<nav th:fragment="navbarFragment" class="navbar navbar-default navbar-expand-lg border-bottom sticky-top justify-content-center">
+  <div class="container">
+    <a class="navbar-brand" href="/">GHM</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/">게시판</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">메일</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+          <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/signup}">회원가입</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
