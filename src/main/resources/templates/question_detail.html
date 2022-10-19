@@ -5,7 +5,7 @@
     <h2 class="border-bottom py-2 fw-bold" th:text="${question.title}"></h2>
     <div class="card my-3">
         <div class="card-body position-relative">
-            <div class="card-text" style="white-space: pre-line;" th:text="${question.content}"></div>
+            <div class="card-text" th:utext="${@commonUtil.markdown(question.content)}"></div>
             <div class="rec-btn">
                 <a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
                    th:data-uri="@{|/question/rec/${question.id}|}">
@@ -46,7 +46,7 @@
     <div class="card my-2" th:each="comment : ${question.commentList}">
         <a th:id="|comment_${comment.id}|"></a>
         <div class="card-body">
-            <div class="card-text" style="white-space: pre-line;" th:text="${comment.content}"></div>
+            <div class="card-text" th:utext="${@commonUtil.markdown(comment.content)}"></div>
             <div class="rec-btn">
                 <a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
                    th:data-uri="@{|/comment/rec/${comment.id}|}">
