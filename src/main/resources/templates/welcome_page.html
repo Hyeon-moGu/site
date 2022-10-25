@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/welcome.css}">
+    <title>Site</title>
+</head>
+<input type="checkbox" id="menuicon">
+<label for="menuicon">
+    <span></span>
+    <span></span>
+    <span></span>
+</label>
+<div class="content">
+    <div class="cont_wrap figure_wrap">
+    <figure>
+        <a href="/question/list">
+            <img src="/img/Board.png" alt="Board">
+            <figcaption>
+                <div class="line"><span><img src="/img/Board_logo.png" alt="Board"></span></div>
+            </figcaption>
+        </a>
+    </figure>
+    <br><br><br>
+    <figure>
+        <a href="/picture/list">
+            <img src="/img/Picture.png" alt="picture">
+            <figcaption>
+                <div class="line"><span><img src="/img/Picture_logo.png" alt="picture"></span></div>
+            </figcaption>
+        </a>
+    </figure>
+    <br><br><br>
+    <figure>
+        <a href="/user/login">
+            <img src="/img/Login.png" alt="login">
+            <figcaption>
+                <div class="line"><span><img src="/img/Login_logo.png" alt="login"></span></div>
+            </figcaption>
+        </a>
+    </figure>
+    <br><br><br>
+    <figure>
+        <a href="/user/signup">
+            <img src="/img/Signup.png" alt="signup">
+            <figcaption>
+                <div class="line"><span><img src="/img/Signup_logo.png" alt="signup"></span></div>
+            </figcaption>
+        </a>
+    </figure>
+    </div>
+</div>
+<body style="overflow:hidden;" onselectstart='return false' ondragstart='return false'>
+<div class="container">
+    <div class="cube">
+        <div style="--x:-1;--y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+        </div>
+        <div style="--x:0;--y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+        </div>
+        <div style="--x:1;--y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+        </div>
+    </div>
+    <div class="cube">
+        <div style="--x:-1;--y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+        </div>
+        <div style="--x:0;--y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+        </div>
+        <div style="--x:1;--y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+        </div>
+    </div>
+    <div class="cube">
+        <div style="--x:-1;--y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+        </div>
+        <div style="--x:0;--y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+        </div>
+        <div style="--x:1;--y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+        </div>
+    </div>
+</div>
+<div class='console-container'><span id='text'></span><div class='console-underscore' id='console'>&#95;</div></div>
+<!-- Bootstrap JS -->
+<script th:src="@{/bootstrap.min.js}"></script>
+<!-- 자바스크립트 시작 -->
+<th:block layout:fragment="script">
+    <script>
+        consoleText(['Hello, This page is welcomepage', 'I will introduce my web page',
+            'Hover your cursor over the cube and the cube will glow', 'Click the right icon to bring up the sidebar',
+            'When you go inside, there are CRUD function, photo upload/download function, and login/logout function',
+            'Thank you for your visit'],
+            'text',['tomato','orange','Yellow','green','skyblue','purple']);
+
+        function consoleText(words, id, colors) {
+        if (colors === undefined) colors = ['#fff'];
+        var visible = true;
+        var con = document.getElementById('console');
+        var letterCount = 1;
+        var x = 1;
+        var waiting = false;
+        var target = document.getElementById(id)
+        target.setAttribute('style', 'color:' + colors[0])
+        window.setInterval(function() {
+
+        if (letterCount === 0 && waiting === false) {
+        waiting = true;
+        target.innerHTML = words[0].substring(0, letterCount)
+        window.setTimeout(function() {
+        var usedColor = colors.shift();
+        colors.push(usedColor);
+        var usedWord = words.shift();
+        words.push(usedWord);
+        x = 1;
+        target.setAttribute('style', 'color:' + colors[0])
+        letterCount += x;
+        waiting = false;
+        }, 1000)
+        } else if (letterCount === words[0].length + 1 && waiting === false) {
+        waiting = true;
+        window.setTimeout(function() {
+        x = -1;
+        letterCount += x;
+        waiting = false;
+        }, 1000)
+        } else if (waiting === false) {
+        target.innerHTML = words[0].substring(0, letterCount)
+        letterCount += x;
+        }
+        }, 120)
+        window.setInterval(function() {
+        if (visible === true) {
+        con.className = 'console-underscore hidden'
+        visible = false;
+
+        } else {
+        con.className = 'console-underscore'
+
+        visible = true;
+        }
+        }, 400)
+        }
+    </script>
+</th:block>
+</body>
+</html>
