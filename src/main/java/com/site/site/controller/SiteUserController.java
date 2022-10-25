@@ -49,7 +49,7 @@ public class SiteUserController {
             return "signup_form";
         }
 
-        return "redirect:/";
+        return "redirect:/user/login";
     }
 
     @GetMapping("/login")

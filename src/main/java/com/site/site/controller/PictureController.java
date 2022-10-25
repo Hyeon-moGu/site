@@ -4,13 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/thinking")
+@RequestMapping("/picture")
 @Controller
 @RequiredArgsConstructor
-public class thinkingController {
+public class PictureController {
 
-    @RequestMapping("")
-    public String album(){
-        return "thinking";
+    @RequestMapping("/list")
+    public String list(){
+        return "picture_list";
     }
 }
