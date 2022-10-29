@@ -1,0 +1,27 @@
+<!-- HTML layout -->
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+<h2>사진 업로드</h2>
+    <div class="container">
+        <form th:action="@{/picture/fileinsert}" method="post" enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label for="title" class="form-label">제목</label>
+                <input type="text" name="title" id="title" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">내용</label>
+                <textarea name="content" id="content" class="form-control" rows="5"></textarea>
+            </div>
+            <div class="mb-3">
+                <input type="file" name="files">
+            </div>
+            <button type="submit" class="btn btn-primary">업로드</button>
+        </form>
+    </div>
+
+    <div class="container d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-muted">&copy; 2022-10 Hm</p>
+    </div>
+</div>
+</html>
