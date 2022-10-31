@@ -23,6 +23,3 @@ Etc
 
 `HTML` `CSS` `Bootstrap 5.1.3`
 
-## 데모 페이지
-
-(추가예정)
