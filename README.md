@@ -25,8 +25,9 @@ Etc
 
 ## 실행 GIF
 
+![mainpage](https://user-images.githubusercontent.com/100026743/199162940-a6e505b3-b9b0-4149-9bee-77e3639d22df.gif)
 
-<img src="![mainpage](https://user-images.githubusercontent.com/100026743/199162862-d36340d7-bbc4-49d6-9698-bfa8caa98a36.gif)">
+
 
 
 ..
