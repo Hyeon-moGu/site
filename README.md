@@ -24,4 +24,9 @@ Etc
 `HTML` `CSS` `Bootstrap 5.1.3`
 
 ## 실행 GIF
+
+
+<img src="![mainpage](https://user-images.githubusercontent.com/100026743/199162862-d36340d7-bbc4-49d6-9698-bfa8caa98a36.gif)">
+
+
 ..
