@@ -1,6 +1,6 @@
 # site
 
-CRUD, login/logout, signup, file upload/download     [ + MyPage (~ing) ]
+CRUD, login/logout, signup, file upload/download     [ + MyPage (~ing) ] 
 
 ## 개발 환경
 * IDE : `Intellij IDEA Ultimate 2022.2.1`
